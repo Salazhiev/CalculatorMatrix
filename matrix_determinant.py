@@ -1,4 +1,4 @@
-def matr(matrix): # рекурсивная функция(recursive function)
+def determinant_recursion(matrix): # рекурсивная функция(recursive function)
     first_line = matrix[0].copy() # берем первую строчку нашей матрицы(тоесть числа с первой строки у нас будут алгеброическими дополнениями)
                                   # и так будет всегда, тоесть элементы первой строки всегда будут в качестве алгеброических дополнений
 
@@ -16,9 +16,9 @@ def matr(matrix): # рекурсивная функция(recursive function)
     # here we iterate over the elements of the first line, that is, first_line[i] is an algebraic complement
     for i in range(len(first_line)):
         if i%2==0:  # снизу мы первый элемент матрицы умножаем на алгеброическое дополнение(from below we multiply the first element of the matrix by the algebraic complement)
-            first_line[i] = first_line[i] * matr( [matrix[j+1][:i] + matrix[j+1][i+1:] for j in range(  len(matrix[1:])  )] )
+            first_line[i] = first_line[i] * determinant_recursion( [matrix[j+1][:i] + matrix[j+1][i+1:] for j in range(  len(matrix[1:])  )] )
         else:       # тут тоже самое только алгебраическое дополнение берется со знаком минус(шахматный порядок)(here, too, only the algebraic complement is taken with a minus sign (chess order))
-            first_line[i] = (-1) * first_line[i] * matr( [matrix[j+1][:i] + matrix[j+1][i+1:] for j in range(  len(matrix[1:])  )] )
+            first_line[i] = (-1) * first_line[i] * determinant_recursion( [matrix[j+1][:i] + matrix[j+1][i+1:] for j in range(  len(matrix[1:])  )] )
     return sum(first_line)
 
 
@@ -34,4 +34,4 @@ if __name__ == '__main__':
             raise ValueError('Не правильно введены данные(The data is not entered correctly)')
 
 
-    print(matr(matrix))
+    print(determinant_recursion(matrix))
