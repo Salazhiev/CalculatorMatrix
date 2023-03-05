@@ -6,6 +6,7 @@ def check_true_matrix(column_, matrix_):
 
 
 
+
 if __name__ == '__main__':
     line_A, column_A = map(int, (input("Количество строк и столбцов матрицы A(Matrix Size A): ").split()))
     matrix_A = [ list(map(int, input(f'Введите {i+1} строку матрицы А: ').split())) for i in range(line_A) ]
@@ -14,6 +15,10 @@ if __name__ == '__main__':
     line_B, column_B = map(int, (input("Количество строк и столбцов матрицы B(Matrix Size B): ").split()))
     matrix_B = [ list(map(int, input(f'Введите {i+1} строку матрицы B: ').split())) for i in range(line_B) ]
     check_true_matrix(column_B, matrix_B)
+
+
+    if column_A!=line_A:
+        raise ValueError('Не правильно введены данные(Data entered incorrectly)')
 
 
     new_matrix_multiplication = [ [0]*column_B for _ in range(line_A) ]
